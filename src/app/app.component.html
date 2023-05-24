@@ -1,1 +1,11 @@
+<mat-toolbar>
+  <button mat-icon-button routerLink="/">
+    <mat-icon>home</mat-icon>
+  </button>
+  <span>Angular Starter</span>
+  <button mat-button routerLink="/secret" *ngIf="isUserLogged()">Secret</button>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/login" *ngIf="!isUserLogged()">Login</button>
+  <button mat-button *ngIf="isUserLogged()" (click)="logout()">Logout</button>
+</mat-toolbar>
 <router-outlet></router-outlet>
