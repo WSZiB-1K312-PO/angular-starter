@@ -1,30 +1,14 @@
-import {
-  ActivatedRouteSnapshot,
-  CanActivateFn,
-  CanDeactivate,
-  Route, Router,
-  RouterStateSnapshot,
-  UrlTree
-} from '@angular/router';
 import {UserService} from "./user.service";
-import {Observable} from "rxjs";
-import {Injectable} from "@angular/core";
+import {inject} from "@angular/core";
+import {Router} from "@angular/router";
 
-@Injectable()
-export class LoggedGuard implements CanDeactivate<any> {
-  constructor(private userService: UserService, private router: Router) {}
-
-  canDeactivate(
-    component: any,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState: RouterStateSnapshot
-  ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
-    if(this.userService.isLogged()) {
-      return true;
-    } else {
-      console.log("test");
-      return this.router.parseUrl("/login");
-    }
+export function loggedGuard() {
+  const userService = inject(UserService);
+  const router = inject(Router);
+  if(userService.isLogged()) {
+    return true;
+  } else {
+    router.navigate(["login"]);
+    return false;
   }
 }

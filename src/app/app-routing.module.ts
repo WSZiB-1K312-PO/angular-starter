@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {SecretComponent} from "./secret/secret.component";
 import {LoginComponent} from "./login/login.component";
-import {LoggedGuard} from "./logged.guard";
+import {loggedGuard} from "./logged.guard";
 
 const routes: Routes = [
   {
@@ -13,16 +13,20 @@ const routes: Routes = [
   {
     path: "secret",
     component: SecretComponent,
-    canActivate: [LoggedGuard]
+    canActivate: [loggedGuard]
   },
   {
     path: "login",
     component: LoginComponent
   },
+  {
+    path: "**",
+    redirectTo: ""
+  }
 ];
 
 @NgModule({
-  providers: [LoggedGuard],
+  providers: [],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

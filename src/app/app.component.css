@@ -1,3 +1,7 @@
 .spacer {
   flex: 1 1 auto;
 }
+.trivia {
+  padding-left: 16px;
+  font-size: 12px;
+}

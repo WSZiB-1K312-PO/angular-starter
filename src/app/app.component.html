@@ -3,6 +3,7 @@
     <mat-icon>home</mat-icon>
   </button>
   <span>Angular Starter</span>
+  <span class="trivia">{{ catsTrivia | async }}</span>
   <button mat-button routerLink="/secret" *ngIf="isUserLogged()">Secret</button>
   <span class="spacer"></span>
   <button mat-button routerLink="/login" *ngIf="!isUserLogged()">Login</button>
